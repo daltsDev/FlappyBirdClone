@@ -7,19 +7,31 @@
   <title>Flappy Bird Clone</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Teko:700">
   <style>
-    body {
-      background: url('./img/background.png') no-repeat center center fixed;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Teko', sans-serif;
+      color: #70c5ce;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
     #bird{
-      border: 1px solid black;
-      display: block;
-      margin: 70px auto;
+      border: 1px solid #70c5ce;
     }
   
   </style>
 </head>
 <body>
-  <canvas id="bird" width="320" height="480"></canvas>
+  <div class="container">
+    <h1>Flappy Bird Clone</h1>
+    <canvas id="bird" width="320" height="480"></canvas>
+  </div>
+  
   <script src="./game.js"></script>
 </body>
 </html>
