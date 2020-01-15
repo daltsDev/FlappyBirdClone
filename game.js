@@ -42,6 +42,15 @@ const startBtn = {
   h : 29
 }
 
+function clearSelection() {
+  if(document.selection && document.selection.empty) {
+      document.selection.empty();
+  } else if(window.getSelection) {
+      var sel = window.getSelection();
+      sel.removeAllRanges();
+  }
+}
+
 // CONTROL THE GAME
 canvas.addEventListener('click', function(e){
   switch(state.current){
@@ -273,6 +282,11 @@ const pipes = {
           state.current = state.over;
           HIT.play();
       }
+      // OUTSIDE THE SCREEN
+      if (bird.x + bird.radius > canvas.height - canvas.height && bird.x + bird.radius == p.x){
+        state.current = state.over;
+        HIT.play();
+      }
 
       p.x -= this.dX;
       // if the pipes go beyond canvas, we delete them from the array
@@ -347,6 +361,6 @@ function loop(){
   frames++;
 
   requestAnimationFrame(loop);
-
+  clearSelection();
 }
 loop();
