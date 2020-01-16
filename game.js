@@ -172,6 +172,11 @@ const bird = {
           DIE.play();
         }
       }
+      if (this.y + this.h/2 <= (canvas.height - canvas.height) - 50 && pipes.isTouchingBird){
+        state.current = state.over;
+        DIE.play();
+        pipes.isTouchingBird = false;
+      }
       if(this.speed >= this.jump){
         this.rotation = 90 * DEGREE;
         this.frame = 1;
@@ -225,6 +230,8 @@ const gameOver = {
 
 const pipes = {
   position:  [],
+
+  isTouchingBird: false,
 
   top: {
     sX: 553,
@@ -282,11 +289,10 @@ const pipes = {
           state.current = state.over;
           HIT.play();
       }
-      // OUTSIDE THE SCREEN
-      if (bird.x + bird.radius > canvas.height - canvas.height && bird.x + bird.radius == p.x){
-        state.current = state.over;
-        HIT.play();
+      if (bird.x + bird.radius > p.x) {
+        this.isTouchingBird = true;
       }
+      
 
       p.x -= this.dX;
       // if the pipes go beyond canvas, we delete them from the array
